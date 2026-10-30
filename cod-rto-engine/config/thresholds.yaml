@@ -1,0 +1,51 @@
+# COD RTO Decision Engine - Thresholds Configuration
+# Change these values without touching any code
+
+risk_thresholds:
+  ship_as_is_max: 0.25          # score <= this ➔ Ship as-is (Safe Tier)
+  nudge_to_prepaid_max: 0.50    # score <= this ➔ Nudge to prepaid (Conversion Tier)
+  confirm_before_ship_max: 0.72 # score <= this ➔ Ship after confirmation (Verification Tier)
+  # score > confirm_before_ship_max ➔ Hold / cancel (Risk Containment Tier)
+
+# Weights for risk score calculation (must sum to 1.0)
+scoring_weights:
+  address_quality: 0.30         # LLM/NLP-assessed address completeness
+  pincode_rto_rate: 0.25        # Historical delivery intelligence by pincode
+  customer_history: 0.20        # Previous RTO count / total orders
+  first_order_penalty: 0.10     # First-time buyer risk penalty
+  order_value_factor: 0.08      # Higher order ticket size risk
+  name_quality: 0.07            # Name realism check (catches keyboard mash)
+
+# WhatsApp confirmation settings
+whatsapp:
+  reply_wait_hours: 24
+  no_reply_action: "hold_cancel"   # or "ship_as_is"
+  random_reply_action: "resend_once"
+
+# Prepaid nudge discount
+prepaid_nudge:
+  discount_amount_inr: 30
+  discount_code_prefix: "PAYNOW"
+  # Math: COD RTO cost saving = ₹40.66/order, discount = ₹30, net gain = +₹10.66/order
+
+# Business constants (for dashboard calculations)
+business:
+  forward_shipping_cost: 65
+  return_shipping_cost: 65
+  packaging_handling_cost: 25
+  damage_rate: 0.08
+  avg_product_cost: 180
+  avg_order_value: 649
+  gross_margin_pct: 0.62
+  customer_acquisition_cost: 300
+  cac_lost_on_first_order_cancel: true
+
+# Pincode blocklist (auto-cancelled regardless of other signals)
+pincode_blocklist: []
+
+# Score overrides for known-bad patterns
+hard_rules:
+  gibberish_name_score: 0.90
+  gibberish_address_score: 0.85
+  customer_rto_rate_above: 0.60   # If customer RTO rate > this, add 0.20 to score
+  pincode_rto_rate_above: 0.50    # If pincode RTO rate > this, add 0.15 to score

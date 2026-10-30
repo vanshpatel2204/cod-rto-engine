@@ -180,5 +180,4 @@ OK
 ---
 
 **Author:** Vansh Patel (`vdppatel2204@gmail.com`)  
-**Target Role:** Associate Software Engineer (Internship) at Oytra  
-**Evaluation Lead:** Kapil (Founder / Engineering, Oytra)
+

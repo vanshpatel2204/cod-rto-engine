@@ -97,7 +97,7 @@ The engine divides work strictly between **qualitative linguistic reasoning** (h
 ## 📱 Platform Features
 
 ### 1. Operations Command Center (Dashboard)
-- **ClarioAI & Linear-inspired design system** with deep obsidian sidebar, crisp institutional KPI cards, and JetBrains Mono figures.
+- **Linear-inspired design system** with deep obsidian sidebar, crisp institutional KPI cards, and JetBrains Mono figures.
 - **Unit Economics Ledger**: Real-time calculation of *RTO Logistics Cost Prevented*, *Margin Lost to False Positives*, and *Net Preserved Contribution Margin*.
 - **Interactive Plotly Visualizations**: Order value distribution by action and donut breakdown with center metrics.
 
